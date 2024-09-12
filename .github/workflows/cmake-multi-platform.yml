@@ -61,4 +61,12 @@ jobs:
         -DCMAKE_C_COMPILER=${{ matrix.c_compiler }}
         -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
         -S ${{ github.workspace }} && ls -la build/4004-emulator
-          
+        
+    - name: Build
+      run: >
+        cmake --build ${{ steps.strings.outputs.build-output-dir }}
+    - name: View files on build
+      run: >
+        ls -la ${{ steps.strings.outputs.build-output-dir }}
+        echo "TESTE"
+        ls -la ${{ steps.strings.outputs.build-output-dir }}/4004-emulator
