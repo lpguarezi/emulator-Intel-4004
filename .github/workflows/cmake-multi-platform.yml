@@ -63,8 +63,13 @@ jobs:
         -S ${{ github.workspace }} && ls -la build/4004-emulator
         
     - name: Build
-      run: >
-        cmake --build ${{ steps.strings.outputs.build-output-dir }}
-    - name: Build
       # Build your program with the given configuration. Note that --config is needed because the default Windows generator is a multi-config generator (Visual Studio generator).
       run: cmake --build ${{ steps.strings.outputs.build-output-dir }} --config ${{ matrix.build_type }}
+      
+    - name: Upload artifact
+      uses: actions/upload-artifact@v2
+      with: 
+        name: result-artifact-${{ matrix.build_type }}
+        path: ${{ steps.strings.outputs.build-output-dir }}/4004-emulator/4004-emulator
+
+        
