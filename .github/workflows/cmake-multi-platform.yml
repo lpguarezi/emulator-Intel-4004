@@ -67,7 +67,7 @@ jobs:
       run: cmake --build ${{ steps.strings.outputs.build-output-dir }} --config ${{ matrix.build_type }}
       
     - name: Upload artifact
-      uses: actions/upload-artifact@v3.2.1
+      uses: actions/upload-artifact@v4
       with: 
         name: result-artifact-${{ matrix.build_type }}
         path: ${{ steps.strings.outputs.build-output-dir }}/4004-emulator/4004-emulator
